@@ -1,7 +1,7 @@
 <?php //Pantalla de incio 
-	session_start();
+	/*session_start();
 	require("class/connect_db.php");
-	$type 	   = isset($_GET["type"]) ? $_GET["type"] : "";
+	$type 	   = isset($_GET["type"]) ? $_GET["type"] : "";*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,7 +19,7 @@
 	<body background="images/fondotot.jpg" style="background-attachment: fixed">
 		<div class="container">
 			<header class="header">
-				<?php include ('include/cabecera.php');?>
+				<?php //include ('include/cabecera.php');?>
 			</header>
 			<div>
 				<?php include ('include/menu.php'); ?>
@@ -27,7 +27,7 @@
 			<br>
 			<div>
 				<?php 
-				include ('include/products.php'); 
+				//include ('include/products.php'); 
 				?>
 			</div>
 			<footer>

@@ -12,7 +12,7 @@ class usuarios_controller extends CI_Controller{
         $this->load->model("usuarios_model");
          
         //cargo la libreria de sesiones
-        $this->load->library("session");
+        //$this->load->library("session");
     }
      
     //controlador por defecto
@@ -29,18 +29,35 @@ class usuarios_controller extends CI_Controller{
         if($this->input->post("submit")){
          
         //llamo al metodo login
-        $usuarios["login"]=$this->usuarios_model->login(
+        $usuarios=$this->usuarios_model->login(
             $this->input->post("user"),
             $this->input->post("password")
         );
-            if (count($usuarios["login"]) > 0 ) {
+            if (count($usuarios) > 0 ) {
                 //array asociativo con la llamada al metodo
                 //del modelo
-                $usuarios["ver"]=$this->usuarios_model->ver();    
+                ///$products["/ver"]=$this->usuarios_model->ver();    
                 //cargo la vista y le paso los datos
-                $this->load->view("usuarios_view",$usuarios);
-            } else {
-                echo "caca";
+                //$this->load->view("usuarios_view",$usuarios);
+                //print_r($usuarios["login"]);
+                $_SESSION =	$usuarios;
+                //print_r($_SESSION);
+                //echo "usuario = " . $_SESSION[0]->user;
+                /*$_SESSION['rol']	  =	$user['rol'];
+                $_SESSION['name']	  =	$user['name'];
+                $_SESSION['last_name']= $user['last_name'];
+                $_SESSION['email']	  = $user['email'];
+                $_SESSION['phone']	  = $user['phone'];	*/
+                $this->load->view("index");
+
+            }elseif ($this->user == 'admin' && $this->pass == '123456789') {
+            //de no encontrarse en la base datos tambien valida este usuario admin predeterminado
+                /*$_SESSION['username'] =	$this->user;
+                $_SESSION['rol']	  =	2;*/
+            }	else{
+                //si el admin tampoco coincide da mensaje de error de usuario
+                echo '<script>alert("Usuario o Contraseña incorrecto!")</script> ';
+                $this->load->view("login_view");
             }
         }
     }
