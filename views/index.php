@@ -11,9 +11,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Keilor Jiménez">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <script src="bootstrap/js/jquery-1.8.3.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="../../bootstrap/js/jquery-1.8.3.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
 
 </head>
 	<body background="images/fondotot.jpg" style="background-attachment: fixed">
@@ -35,6 +35,5 @@
 				<hr class="soften"/>
 			</footer>
 			</div>
-			</style>
 	</body>
 </html>
