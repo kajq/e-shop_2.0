@@ -36,17 +36,17 @@ class CategoriesController extends CI_Controller{
         if($this->input->post("submit")){
          
         //llamo al metodo add
-        $add=$this->usuarios_model->add(
+        $model_add=$this->CategoriesModel->add(
                 $this->input->post("description"),
                 $this->input->post("id_supercategory"),
                 $this->input->post("state")
                 );
         }
-        if($add==true){
+        if($model_add==true){
             //Sesion de una sola ejecución
-            $this->session->set_flashdata('correcto', 'Usuario añadido correctamente');
+            echo '<script>alert("Categoria agregada correctamente")</script> ';
         }else{
-            $this->session->set_flashdata('incorrecto', 'Usuario añadido correctamente');
+            echo '<script>alert("No se pudo agregar la categoria")</script> ';
         }
          
         //redirecciono la pagina a la url por defecto

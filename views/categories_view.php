@@ -1,12 +1,10 @@
-<?php //Pantalla de administración de categorias
+<?php
+extract($_GET);
+$action	   = isset($_GET["action"]) ? $_GET["action"] : "default";
+//Pantalla de administración de categorias
 	/*$oCategoria = new categories();
-	extract($_GET);
-	$action	   = isset($_GET["action"]) ? $_GET["action"] : "default";
-	$category  = isset($_GET["category"]) ? $_GET["category"] : "";
-	$id_superc = isset($_GET["id_superc"]) ? $_GET["id_superc"] : "";
-	$superc    = isset($_GET["superc"]) ? $_GET["superc"] : "";
-	$state     = isset($_GET["state"]) ? $_GET["state"] : 1;
-	$id 	   = isset($_GET["id"]) ? $_GET["id"] : "algo";
+	
+	
 	if ($state == 0) {$check_state = "";} else {$check_state = "checked";}
     if ($action == 'insert') {
     	$oCategoria->insert_category();
@@ -42,15 +40,15 @@
 			<br><br>
 			<div class = "nav-collapse">
 				<h3>Categorias de Productos  
-					<a href="../admin_categories.php?action=new">
+					<a href=<?php echo site_url('../CategoriesController?action=new'); ?>>
                         <img src='../images/new.png' title="Nueva Categoria" width="25" />
                     </a>
                 </h3>
 	                <?php 
-                /*if ($action == 'new' || $action == 'edit') {
+                if ($action == 'new' || $action == 'edit') {
                 	$action = 'insert';
                 	include ('include/form_category.php');
-                } */?>		
+                } ?>		
 			</div>
 			<table border='0' class='table table-hover'>
 				<tr class='warning'>

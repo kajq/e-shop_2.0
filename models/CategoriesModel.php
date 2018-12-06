@@ -19,15 +19,11 @@ class CategoriesModel extends CI_Model{
         return $consulta->result();
     }
      
-    public function add($user,$password,$rol, $state){
-        $consulta=$this->db->query("SELECT user FROM categories WHERE user LIKE '$user'");
-        if($consulta->num_rows()==0){
-            $consulta=$this->db->query("INSERT INTO users VALUES('$user','$password','$rol','$state');");
-            if($consulta==true){
-              return true;
-            }else{
-                return false;
-            }
+    public function add($description,$id_supercategory, $state){
+        
+        $consulta=$this->db->query("INSERT INTO categories VALUES('','$description','$id_supercategory','$state');");
+        if($consulta==true){
+            return true;
         }else{
             return false;
         }
