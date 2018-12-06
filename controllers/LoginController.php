@@ -10,7 +10,7 @@ class LoginController extends CI_Controller{
         $this->load->helper("url"); 
          
         //llamo o incluyo el modelo
-        $this->load->model("usuarios_model");
+        $this->load->model("UsersModel");
          
         //cargo la libreria de sesiones
         $this->load->library("session");
