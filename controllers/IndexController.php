@@ -1,6 +1,6 @@
 <?php
 //extendemos CI_Controller
-class index_controller extends CI_Controller{
+class IndexController extends CI_Controller{
     public function __construct() {
         //llamamos al constructor de la clase padre
         parent::__construct();

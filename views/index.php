@@ -1,6 +1,6 @@
 <?php //Pantalla de incio 
-	/*session_start();
-	require("class/connect_db.php");
+	//session_start();
+	/*require("class/connect_db.php");
 	$type 	   = isset($_GET["type"]) ? $_GET["type"] : "";*/
 ?>
 <!DOCTYPE html>

@@ -4,6 +4,7 @@
  */
 $init = new menu();
 $init->show_menu();
+
 class menu
 {
 	private $connect_db;
@@ -11,7 +12,7 @@ class menu
 
 	function __construct()
 	{
-		$this->rol = isset($_SESSION[0]->rol)? $_SESSION[0]->rol : null ;
+		$this->rol = isset($_SESSION['rol'])? $_SESSION['rol'] : null ;
 	}
 
 	function show_menu()
@@ -19,7 +20,7 @@ class menu
 		if ($this->rol == null) {
 			echo "<div class='navbar'>
 					<ul class='nav pull-right'>
-						<li><a href='login.php'>Iniciar Sesión</a></li>			 
+						<li><a href="  . site_url('../LoginController') . ">Iniciar Sesión</a></li>			 
 					</ul>
 				</div>";
 			echo "<div class= 'navbar'>
@@ -58,7 +59,7 @@ class menu
 					  </div>";	  	  
 				echo "<div class='navbar'>
 						<ul class='nav pull-right'>
-							<li><a href='admin_categories.php'>Categorias</a></li>		 
+							<li><a href='" . site_url('../CategoriesController') . "'>Categorias</a></li>		 
 						</ul>
 					  </div>";	  	  
 			}	  
@@ -69,11 +70,11 @@ class menu
 		  		</div>";
 			echo "<div class='navbar'>
 						<ul class='nav pull-right'>
-							<li><a href='Index.php'>Inicio</a></li>		 
+							<li><a href='" . site_url('../IndexController') . "'>Inicio</a></li>		 
 						</ul>
 					  </div>";
 			echo "<div class='navbar'>
-					<h4>Usuario: ". $_SESSION[0]->user ."</h4>
+					<h4>Usuario: ". $_SESSION['user'] ."</h4>
 				</div>";
 		}
 	}

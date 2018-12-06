@@ -9,9 +9,9 @@
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 		<link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
 		<link rel="stylesheet" type="text/css" href="estilos/estilos.css">
-		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-	    <script src="bootstrap/js/jquery-1.8.3.min.js"></script>
-	    <script src="bootstrap/js/bootstrap.min.js"></script>
+		<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	    <script src="../../bootstrap/js/jquery-1.8.3.min.js"></script>
+	    <script src="../../bootstrap/js/bootstrap.min.js"></script>
 	<title>Login</title>
 </head>
 <body background="images/fondotot.jpg" style="background-attachment: fixed" >
@@ -21,7 +21,7 @@
 		</header>
 			<div class="navbar">
 				<ul class="nav pull-right">
-					<li><a href="index.php">Página Inicio</a></li>			 
+					<li><a href=<?php echo site_url('../IndexController')?>>Página Inicio</a></li>			 
 				</ul>
 			</div>
 			<div class= "navbar">
@@ -37,7 +37,7 @@
 		<center>
 
 		<table border="0" align="center" valign="middle">
-			<form action="<?=base_url("usuarios_controller/login");?>" method="POST">
+			<form action="<?=base_url("LoginController/login");?>" method="POST">
 				<tr>
 					<td><label style="font-size: 14pt"><b>Usuario: </b></label></td>
 					<td><input class="form-group has-success" style="border-radius:15px;" type="text" name="user"></td>
