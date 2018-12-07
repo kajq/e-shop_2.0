@@ -52,7 +52,9 @@
 					<td><?php if ($category->state == 1) { $state = 'Activo';}else {$state = 'Inactivo'; } echo $state; ?></td>
                     <td> <a href="<?=base_url("CategoriesController/mod/$category->id")?>"><img src='../../../images/update.jpg' class='img-rounded' width='1'></a>             
 					</td>
-					<td> <a href="<?=base_url("CategoriesController/eliminar/$category->id")?>"><img src='../../../images/delete.png' class='img-rounded' width='20'></a>             
+                    <td> <a href="<?=base_url("CategoriesController/eliminar/$category->id")?>">
+                    <img src='../../../images/delete.png' class='img-rounded' width='20' 
+                        onclick="return confirm('¿Esta seguro de eliminar este producto?')"> </a>             
 					</td>
 				</tr>
 				<?php 	} ?>

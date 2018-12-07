@@ -47,8 +47,8 @@ class CategoriesModel extends CI_Model{
         }
     }
      
-    public function eliminar($user){
-       $consulta=$this->db->query("DELETE FROM users WHERE user=$user");
+    public function eliminar($id){
+       $consulta=$this->db->query("DELETE FROM categories WHERE id = $id");
        if($consulta==true){
            return true;
        }else{
