@@ -1,6 +1,6 @@
 <?php
                         //extendemos CI_Controller
-class CategoriesController extends CI_Controller{
+class ProductsController extends CI_Controller{
     public function __construct() {
         //llamamos al constructor de la clase padre
         parent::__construct();
@@ -9,7 +9,7 @@ class CategoriesController extends CI_Controller{
         $this->load->helper("url"); 
          
         //llamo o incluyo el modelo
-        $this->load->model("CategoriesModel");
+        $this->load->model("ProductsModel");
          
         //cargo la libreria de sesiones
         $this->load->library("session");
@@ -22,22 +22,22 @@ class CategoriesController extends CI_Controller{
             echo '<script>alert("Usuario no autorizado!!")</script> ';
             echo "<script>location.href='index.php'</script>";	
         }
-        $categories["ver"]=$this->CategoriesModel->ver();    
+        $products["ver"]=$this->ProductsModel->ver();    
         //cargo la vista y le paso los datos
-        $this->load->view("categories_view",$categories); 
+        $this->load->view("products_view",$products); 
          
     }
      
     //controlador para añadir
     public function add(){
         $datos["add"]=true;
-        $datos["ver"]=$this->CategoriesModel->ver();
-        $this->load->view("categories_view",$datos);
+        $datos["ver"]=$this->ProductsModel->ver();
+        $this->load->view("products_view",$datos);
         //compruebo si se a enviado submit
         if($this->input->post("submit")){
          
         //llamo al metodo add
-        $model_add=$this->CategoriesModel->add(
+        $model_add=$this->ProductsModel->add(
             $this->input->post("description"),
             $this->input->post("id_supercategory"),
             $this->input->post("state")
@@ -50,7 +50,7 @@ class CategoriesController extends CI_Controller{
             }else{
                 echo '<script>alert("No se pudo agregar la categoria")</script> ';
             }
-            redirect('http://www.e-shop_2.0.com/index.php/CategoriesController');
+            redirect('http://www.e-shop_2.0.com/index.php/ProductsController');
         }
         
         
@@ -77,10 +77,10 @@ class CategoriesController extends CI_Controller{
                 }else{
                     $this->session->set_flashdata('incorrecto', 'Usuario modificado correctamente');
                 }
-                redirect('http://www.e-shop_2.0.com/index.php/CategoriesController');
+                redirect('http://www.e-shop_2.0.com/index.php/ProductsController');
             }
         }else{
-            redirect('http://www.e-shop_2.0.com/index.php/CategoriesController');
+            redirect('http://www.e-shop_2.0.com/index.php/ProductsController');
         }
     }
      
@@ -94,7 +94,7 @@ class CategoriesController extends CI_Controller{
               $this->session->set_flashdata('incorrecto', 'Usuario eliminado correctamente');
           }
         }
-        redirect('http://www.e-shop_2.0.com/index.php/CategoriesController');
+        redirect('http://www.e-shop_2.0.com/index.php/ProductsController');
     }
 }
 ?>

@@ -54,7 +54,7 @@ class menu
 					  </div>";
 				echo "<div class='navbar'>
 						<ul class='nav pull-right'>
-							<li><a href='admin_products.php'>Productos</a></li>		 
+							<li><a href='" . site_url('../ProductsController'). "'>Productos</a></li>		 
 						</ul>
 					  </div>";	  	  
 				echo "<div class='navbar'>
