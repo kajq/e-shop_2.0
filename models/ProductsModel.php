@@ -13,7 +13,8 @@ class ProductsModel extends CI_Model{
         //Hacemos una consulta
         $consulta=$this->db->query("SELECT prod.*, cat.description category FROM products prod 
         LEFT JOIN categories cat
-        ON prod.id_category = cat.id;");
+        ON prod.id_category = cat.id
+        ORDER BY prod.id_category;");
          
         //Devolvemos el resultado de la consulta
         return $consulta->result();
@@ -29,12 +30,12 @@ class ProductsModel extends CI_Model{
         }
     }
      
-    public function mod($id, $modificar="NULL", $description="NULL", $id_supercategory="NULL", $state="NULL"){
+    public function mod($id, $modificar="NULL", $sku="NULL", $description="NULL", $price="NULL", $in_stock="NULL", $image_file="NULL",$id_category="NULL"){
         if($modificar=="NULL"){
-            $consulta=$this->db->query("SELECT cat.*, sup.description supercategory FROM categories cat 
-            LEFT JOIN categories sup
-            ON sup.id = cat.id_supercategory
-            WHERE cat.id = $id;");
+            $consulta=$this->db->query("SELECT prod.*, cat.description category FROM products prod 
+            LEFT JOIN categories cat
+            ON cat.id = prod.id_category
+            WHERE prod.id = $id;");
             return $consulta->result();
         }else{
           $consulta=$this->db->query("

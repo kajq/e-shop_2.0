@@ -38,9 +38,11 @@ class ProductsController extends CI_Controller{
          
         //llamo al metodo add
         $model_add=$this->ProductsModel->add(
+            $this->input->post("sku"),
             $this->input->post("description"),
-            $this->input->post("id_supercategory"),
-            $this->input->post("state")
+            $this->input->post("price"),
+            $this->input->post("id_category"),
+            $this->input->post("in_stock")
             );
             if($model_add==true){
                 //Sesion de una sola ejecución
@@ -59,17 +61,18 @@ class ProductsController extends CI_Controller{
     //controlador para modificar al que
     //le paso por la url un parametro
     public function mod($id){
-        if(is_numeric($id)){
-          $datos["mod"]=$this->CategoriesModel->mod($id);
-          $datos["ver"]=$this->CategoriesModel->ver();
-          $this->load->view("categories_view",$datos);
+        if($id <> null){
+          $datos["mod"]=$this->ProductsModel->mod($id);
+          $datos["ver"]=$this->ProductsModel->ver();
+          $this->load->view("products_view",$datos);
           if($this->input->post("submit")){
-                $mod=$this->CategoriesModel->mod(
+                $mod=$this->ProductsModel->mod(
                         $id,
-                        $this->input->post("submit"),
+                        $this->input->post("sku"),
                         $this->input->post("description"),
-                        $this->input->post("id_supercategory"),
-                        $this->input->post("state")
+                        $this->input->post("price"),
+                        $this->input->post("id_category"),
+                        $this->input->post("in_stock")
                         );
                 if($mod==true){
                     //Sesion de una sola ejecución

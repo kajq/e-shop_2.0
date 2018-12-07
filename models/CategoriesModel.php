@@ -13,7 +13,8 @@ class CategoriesModel extends CI_Model{
         //Hacemos una consulta
         $consulta=$this->db->query("SELECT cat.*, sup.description supercategory FROM categories cat 
         LEFT JOIN categories sup
-        ON sup.id = cat.id_supercategory;");
+        ON sup.id = cat.id_supercategory
+        ORDER BY sup.id;");
          
         //Devolvemos el resultado de la consulta
         return $consulta->result();

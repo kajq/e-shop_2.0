@@ -39,7 +39,7 @@
 			<table border='0' class='table table-hover'>
 				<tr class='warning'>
 					<td>Imagen</td>
-					<td>AKU</td>
+					<td>SKU</td>
 					<td>Detalle</td>
 					<td>Precio</td>
 					<td>Cantidad</td>
@@ -57,9 +57,9 @@
 					<td> <?php echo $product->in_stock . "<a href='admin_products.php?action=plus&id=+++&in_stock=+++'><img src='../images/new.png' width='15'>" ; ?> 
 					</td>
 					<td> <?php echo $product->category ; ?> </td>
-					<td> <?php echo "<a href='admin_products.php?action=edit&id=+++'><img src='../../images/update.jpg' class='img-rounded' width='25'>";?>
+					<td> <a href= "<?php echo base_url("ProductsController/mod/$product->id"); ?>"><img src='../../images/update.jpg' class='img-rounded' width='25'>
 					</td>
-					<td> <a <?php 	echo " href='admin_products.php?action=delete&id=+++&description=+++'><img src='../images/delete.png' class='img-rounded' width='25'"; ?> onclick="return 				confirm('¿Esta seguro de eliminar este producto?')" > </td>
+					<td> <a href= "<?php echo base_url("ProductsController/eliminar/$product->sku") ?>"><img src='../images/delete.png' class='img-rounded' width='25' onclick="return 				confirm('¿Esta seguro de eliminar este producto?')" > </td>
 				</tr>
 				<?php 	} ?>
 			</table>
@@ -69,6 +69,5 @@
 				<hr class="soften"/>
 			</footer>
 			</div>
-			</style>
 	</body>
 </html>
