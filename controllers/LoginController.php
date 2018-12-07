@@ -30,7 +30,7 @@ class LoginController extends CI_Controller{
         if($this->input->post("submit")){
          
         //llamo al metodo login
-        $usuarios=$this->usuarios_model->login(
+        $usuarios=$this->UsersModel->login(
             $this->input->post("user"),
             $this->input->post("password")
         );

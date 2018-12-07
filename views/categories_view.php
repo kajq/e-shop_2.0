@@ -1,20 +1,3 @@
-<?php
-extract($_GET);
-$action	   = isset($_GET["action"]) ? $_GET["action"] : "default";
-//Pantalla de administración de categorias
-	/*$oCategoria = new categories();
-	
-	
-	if ($state == 0) {$check_state = "";} else {$check_state = "checked";}
-    if ($action == 'insert') {
-    	$oCategoria->insert_category();
-    } elseif ($action == 'update') {
-    	$oCategoria->update_category($id);
-    } elseif ($action == 'delete') {
-    	$oCategoria->delete_category($id);
-    }
-    $categories = $oCategoria->category_table(); */
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,10 +6,10 @@ $action	   = isset($_GET["action"]) ? $_GET["action"] : "default";
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Keilor Jiménez">
-    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-	<link href="../../bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <script src="../../bootstrap/js/jquery-1.8.3.min.js"></script>
-    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="../../../bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="../../../bootstrap/js/jquery-1.8.3.min.js"></script>
+    <script src="../../../bootstrap/js/bootstrap.min.js"></script>
 
 </head>
 	<body background="images/fondotot.jpg" style="background-attachment: fixed">
@@ -40,13 +23,16 @@ $action	   = isset($_GET["action"]) ? $_GET["action"] : "default";
 			<br><br>
 			<div class = "nav-collapse">
 				<h3>Categorias de Productos  
-					<a href=<?php echo site_url('../CategoriesController?action=new'); ?>>
-                        <img src='../images/new.png' title="Nueva Categoria" width="25" />
+					<a href=<?php echo base_url("CategoriesController/add") ?>>
+                        <img src='../../../images/new.png' title="Nueva Categoria" width="25" />
                     </a>
                 </h3>
-	                <?php 
-                if ($action == 'new' || $action == 'edit') {
-                	$action = 'insert';
+            <?php 
+            extract($_GET);
+            $action	   = isset($_GET["action"]) ? $_GET["action"] : "default";
+            $add	   = isset($add) ? $add : false;
+            $mod	   = isset($mod) ? $mod : array();
+                if (($add == true) || (count($mod) > 0)) {
                 	include ('include/form_category.php');
                 } ?>		
 			</div>
@@ -64,9 +50,9 @@ $action	   = isset($_GET["action"]) ? $_GET["action"] : "default";
 					<td><?php echo $category->supercategory ?></td>
 					<td><?php echo $category->description; ?></td>
 					<td><?php if ($category->state == 1) { $state = 'Activo';}else {$state = 'Inactivo'; } echo $state; ?></td>
-                    <td> <a href="<?=base_url("CategoriesController/mod/$category->id")?>"><img src='../images/update.jpg' class='img-rounded' width='1'></a>             
+                    <td> <a href="<?=base_url("CategoriesController/mod/$category->id")?>"><img src='../../../images/update.jpg' class='img-rounded' width='1'></a>             
 					</td>
-					<td> <a href="<?=base_url("CategoriesController/eliminar/$category->id")?>"><img src='../images/delete.png' class='img-rounded' width='20'></a>             
+					<td> <a href="<?=base_url("CategoriesController/eliminar/$category->id")?>"><img src='../../../images/delete.png' class='img-rounded' width='20'></a>             
 					</td>
 				</tr>
 				<?php 	} ?>

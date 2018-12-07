@@ -31,26 +31,30 @@ class CategoriesController extends CI_Controller{
      
     //controlador para añadir
     public function add(){
-         
+        $datos["add"]=true;
+        $datos["ver"]=$this->CategoriesModel->ver();
+        $this->load->view("categories_view",$datos);
         //compruebo si se a enviado submit
         if($this->input->post("submit")){
          
         //llamo al metodo add
         $model_add=$this->CategoriesModel->add(
-                $this->input->post("description"),
-                $this->input->post("id_supercategory"),
-                $this->input->post("state")
-                );
+            $this->input->post("description"),
+            $this->input->post("id_supercategory"),
+            $this->input->post("state")
+            );
+            if($model_add==true){
+                //Sesion de una sola ejecución
+                echo '<script>alert("Categoria agregada correctamente")</script> ';
+                //redirecciono la pagina a la url por defecto
+                
+            }else{
+                echo '<script>alert("No se pudo agregar la categoria")</script> ';
+            }
+            redirect(base_url()); 
         }
-        if($model_add==true){
-            //Sesion de una sola ejecución
-            echo '<script>alert("Categoria agregada correctamente")</script> ';
-        }else{
-            echo '<script>alert("No se pudo agregar la categoria")</script> ';
-        }
-         
-        //redirecciono la pagina a la url por defecto
-        redirect(base_url());
+        
+        
     }
      
     //controlador para modificar al que
@@ -58,10 +62,11 @@ class CategoriesController extends CI_Controller{
     public function mod($id){
         if(is_numeric($id)){
           $datos["mod"]=$this->CategoriesModel->mod($id);
-          $this->load->view("modificarCategory_view",$datos);
+          $datos["ver"]=$this->CategoriesModel->ver();
+          $this->load->view("categories_view",$datos);
           if($this->input->post("submit")){
-                $mod=$this->usuarios_model->mod(
-                        $id_usuario,
+                $mod=$this->CategoriesModel->mod(
+                        $id,
                         $this->input->post("submit"),
                         $this->input->post("description"),
                         $this->input->post("id_supercategory"),

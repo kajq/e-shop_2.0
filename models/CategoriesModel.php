@@ -29,15 +29,16 @@ class CategoriesModel extends CI_Model{
         }
     }
      
-    public function mod($user, $modificar="NULL",$password="NULL",$rol="NULL",$state="NULL"){
+    public function mod($id, $modificar="NULL", $description="NULL", $id_supercategory="NULL", $state="NULL"){
         if($modificar=="NULL"){
-            $consulta=$this->db->query("SELECT * FROM users WHERE user=$id_usuario");
+            $consulta=$this->db->query("SELECT cat.*, sup.description supercategory FROM categories cat 
+            LEFT JOIN categories sup
+            ON sup.id = cat.id_supercategory
+            WHERE cat.id = $id;");
             return $consulta->result();
         }else{
           $consulta=$this->db->query("
-              UPDATE users SET password='$password',
-              rol='$rol', state='$state' WHERE user=$user;
-                  ");
+              UPDATE categories SET description='$description', id_supercategory='$id_supercategory', state='$state' WHERE id=$id;");
           if($consulta==true){
               return true;
           }else{
