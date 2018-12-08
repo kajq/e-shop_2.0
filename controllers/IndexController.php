@@ -9,7 +9,8 @@ class IndexController extends CI_Controller{
         $this->load->helper("url"); 
          
         //llamo o incluyo el modelo
-        //$this->load->model("products_model");
+        $this->load->model("ProductsModel");
+        $this->load->model("CategoriesModel");
          
         //cargo la libreria de sesiones
         $this->load->library("session");
@@ -18,8 +19,10 @@ class IndexController extends CI_Controller{
     //controlador por defecto
     public function index(){
          
+        $datos["products"]=$this->ProductsModel->ver();    
+        $datos["categories"]=$this->CategoriesModel->ver();    
         //cargo la vista y le paso los datos
-        $this->load->view("index"); 
+        $this->load->view("index",$datos); 
          
     }
 }
