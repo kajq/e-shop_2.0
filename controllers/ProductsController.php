@@ -143,7 +143,7 @@ class ProductsController extends CI_Controller{
     //Controlador para eliminar
     public function eliminar($id){
         if(is_numeric($id)){
-          $eliminar=$this->CategoriesModel->eliminar($id);
+          $eliminar=$this->ProductsModel->eliminar($id);
           if($eliminar==true){
               $this->session->set_flashdata('correcto', 'Usuario eliminado correctamente');
           }else{

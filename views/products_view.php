@@ -59,7 +59,7 @@
 					<td> <?php echo $product->category ; ?> </td>
 					<td> <a href= "<?php echo base_url("ProductsController/mod/$product->id"); ?>"><img src='/images/update.jpg' class='img-rounded' width='25'>
 					</td>
-					<td> <a href= "<?php echo base_url("ProductsController/eliminar/$product->sku") ?>"><img src='/images/delete.png' class='img-rounded' width='25' onclick="return 				confirm('¿Esta seguro de eliminar este producto?')" > </td>
+					<td> <a href= "<?php echo base_url("ProductsController/eliminar/$product->id") ?>"><img src='/images/delete.png' class='img-rounded' width='25' onclick="return 				confirm('¿Esta seguro de eliminar este producto?')" > </td>
 				</tr>
 				<?php 	} ?>
 			</table>

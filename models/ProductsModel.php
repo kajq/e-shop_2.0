@@ -51,7 +51,7 @@ class ProductsModel extends CI_Model{
     }
      
     public function eliminar($id){
-       $consulta=$this->db->query("DELETE FROM categories WHERE id = $id");
+       $consulta=$this->db->query("DELETE FROM products WHERE id = $id");
        if($consulta==true){
            return true;
        }else{
