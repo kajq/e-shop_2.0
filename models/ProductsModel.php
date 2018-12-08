@@ -20,9 +20,9 @@ class ProductsModel extends CI_Model{
         return $consulta->result();
     }
      
-    public function add($description,$id_supercategory, $state){
+    public function add($sku, $description,$price, $in_stock, $image_file, $id_category){
         
-        $consulta=$this->db->query("INSERT INTO categories VALUES('','$description','$id_supercategory','$state');");
+        $consulta=$this->db->query("INSERT INTO products VALUES('', '$sku', '$description','$price','$in_stock', '$image_file', '$id_category');");
         if($consulta==true){
             return true;
         }else{
@@ -30,7 +30,8 @@ class ProductsModel extends CI_Model{
         }
     }
      
-    public function mod($id, $modificar="NULL", $sku="NULL", $description="NULL", $price="NULL", $in_stock="NULL", $image_file="NULL",$id_category="NULL"){
+    public function mod($id, $modificar="NULL", $sku="NULL", $description="NULL", $price="NULL", $in_stock="NULL",
+    $image_file="NULL", $id_category="NULL"){
         if($modificar=="NULL"){
             $consulta=$this->db->query("SELECT prod.*, cat.description category FROM products prod 
             LEFT JOIN categories cat
@@ -39,7 +40,8 @@ class ProductsModel extends CI_Model{
             return $consulta->result();
         }else{
           $consulta=$this->db->query("
-              UPDATE categories SET description='$description', id_supercategory='$id_supercategory', state='$state' WHERE id=$id;");
+              UPDATE products SET sku='$sku', description='$description', price='$price', in_stock='$in_stock', image_file='$image_file', 
+              id_category='$id_category' WHERE id=$id;");
           if($consulta==true){
               return true;
           }else{

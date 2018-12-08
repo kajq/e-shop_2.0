@@ -1,4 +1,4 @@
-<form  action='' method='post'>
+<form  action='' method='post' enctype='multipart/form-data'> 
 	<table >
 		<tr>
 			<td>
@@ -28,10 +28,9 @@
 			<select name="id_category" style="border-radius:15px;"> 
 				<option value='<?php echo isset($mod[0]->id_category) ? $mod[0]->id_category : ""; ?>' >
 				<?php echo isset($mod[0]->category) ? $mod[0]->category : "";?></option>
-				<option value="">Ninguna</option>
 				<?php 
 					foreach($verCat as $category){ 
-						echo '<option value=' . $category->id_category . '> ' . $category->description . '</option>';
+						echo '<option value=' . $category->id . '> ' . $category->description . '</option>';
 					}
 				?>	
 			</select>	
@@ -45,7 +44,7 @@
 			<td>	
 			</td>
 			<td>
-				<input type='submit' class='btn btn-danger' value='Guardar'>
+				<input type='submit' name='submit' class='btn btn-danger' value='Guardar'>
 				<input type="submit" class="btn btn-danger" value="Cancelar" onclick = "window.location.href='../admin_products.php'">	
 			</td>
 		</tr>
@@ -54,9 +53,8 @@
 				<b>Imagen</b>
 			</td>
 			<td colspan="6">
-				<input id="imagen" name="imagen" size="30" type="file">	
+				<input id="image_file" name="image_file" size="30" type="file">	
 			</td>
 		</tr>
 	</table>
-	<!--</label> -->
 </form>

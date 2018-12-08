@@ -6,13 +6,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Keilor Jiménez">
-    <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-	<link href="../../../bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <script src="../../../bootstrap/js/jquery-1.8.3.min.js"></script>
-    <script src="../../../bootstrap/js/bootstrap.min.js"></script>
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="/bootstrap/js/jquery-1.8.3.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
-	<body background="images/fondotot.jpg" style="background-attachment: fixed">
+	<body background="/images/fondotot.jpg" style="background-attachment: fixed">
 		<div class="container">
 			<header class="header">
 				<?php // include ('include/cabecera.php');?>
@@ -24,7 +24,7 @@
 			<div class = "nav-collapse">
 				<h3>Categorias de Productos  
 					<a href=<?php echo base_url("ProductsController/add") ?>>
-                        <img src='../../../images/new.png' title="Nueva Categoria" width="25" />
+                        <img src='/images/new.png' title="Nueva Categoria" width="25" />
                     </a>
                 </h3>
             <?php 
@@ -50,16 +50,16 @@
 				<?php 
 				foreach($ver as $product){ ?>
 				<tr class='success'>
-					<td> <?php echo "<img src='../../images/uploads/".$product->image_file."' class='img-rounded' width='100' alt='' />"; ?></td>
+					<td> <?php echo "<img src='/images/uploads/".$product->image_file."' class='img-rounded' width='100' alt='' />"; ?></td>
 					<td> <?php echo $product->sku; ?></td>
 					<td> <?php echo $product->description; ?></td>
 					<td>₡<?php echo $product->price; ?></td>
-					<td> <?php echo $product->in_stock . "<a href='admin_products.php?action=plus&id=+++&in_stock=+++'><img src='../images/new.png' width='15'>" ; ?> 
+					<td> <?php echo $product->in_stock . "<a href='admin_products.php?action=plus&id=+++&in_stock=+++'><img src='/images/new.png' width='15'>" ; ?> 
 					</td>
 					<td> <?php echo $product->category ; ?> </td>
-					<td> <a href= "<?php echo base_url("ProductsController/mod/$product->id"); ?>"><img src='../../images/update.jpg' class='img-rounded' width='25'>
+					<td> <a href= "<?php echo base_url("ProductsController/mod/$product->id"); ?>"><img src='/images/update.jpg' class='img-rounded' width='25'>
 					</td>
-					<td> <a href= "<?php echo base_url("ProductsController/eliminar/$product->sku") ?>"><img src='../images/delete.png' class='img-rounded' width='25' onclick="return 				confirm('¿Esta seguro de eliminar este producto?')" > </td>
+					<td> <a href= "<?php echo base_url("ProductsController/eliminar/$product->sku") ?>"><img src='/images/delete.png' class='img-rounded' width='25' onclick="return 				confirm('¿Esta seguro de eliminar este producto?')" > </td>
 				</tr>
 				<?php 	} ?>
 			</table>
