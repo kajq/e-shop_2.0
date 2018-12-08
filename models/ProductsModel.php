@@ -58,7 +58,15 @@ class ProductsModel extends CI_Model{
            return false;
        }
     }
- 
+
+    public function plus($id, $cant){
+        $update=$this->db->query("UPDATE products set in_stock = '$cant' WHERE id = $id");
+        if($update==true){
+            return true;
+        }else{
+            return false;
+        }
+     }
  
 }
 ?>

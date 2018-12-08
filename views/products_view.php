@@ -54,7 +54,7 @@
 					<td> <?php echo $product->sku; ?></td>
 					<td> <?php echo $product->description; ?></td>
 					<td>₡<?php echo $product->price; ?></td>
-					<td> <?php echo $product->in_stock . "<a href='admin_products.php?action=plus&id=+++&in_stock=+++'><img src='/images/new.png' width='15'>" ; ?> 
+					<td> <?php echo $product->in_stock . "<a href='". base_url("ProductsController/plus/$product->id/$product->in_stock") ."'><img src='/images/new.png' width='15'>" ; ?> 
 					</td>
 					<td> <?php echo $product->category ; ?> </td>
 					<td> <a href= "<?php echo base_url("ProductsController/mod/$product->id"); ?>"><img src='/images/update.jpg' class='img-rounded' width='25'>

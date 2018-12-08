@@ -152,5 +152,18 @@ class ProductsController extends CI_Controller{
         }
         redirect('http://www.e-shop_2.0.com/index.php/ProductsController');
     }
+
+    public function plus($id, $cant){
+        if(is_numeric($id)){
+            $cant++;
+            $plus=$this->ProductsModel->plus($id, $cant);
+            if($plus==true){
+                $this->session->set_flashdata('correcto', 'Usuario eliminado correctamente');
+            }else{
+                $this->session->set_flashdata('incorrecto', 'Usuario eliminado correctamente');
+            }
+          }
+          redirect('http://www.e-shop_2.0.com/index.php/ProductsController');
+    }
 }
 ?>
