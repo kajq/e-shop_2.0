@@ -47,7 +47,7 @@ class LoginController extends CI_Controller{
                 $_SESSION['last_name']= $user['last_name'];
                 $_SESSION['email']	  = $user['email'];
                 $_SESSION['phone']	  = $user['phone'];	*/
-                $this->load->view ("index");
+                redirect('http://www.e-shop_2.0.com/index.php/IndexController');
                 //$this->load->library('../controllers/index_controller');
 
             }elseif ($this->input->post("user") == 'admin' && $this->input->post("password") == '123456789') {

@@ -7,8 +7,8 @@
 	</div>
 	<div class='span6'>
 		<div class='thumbnail'>
-			<table border="0" align="center" valign="middle">
-				<form action="/shopping_car.php?action=new" method="post">
+			<table valign="middle">
+				<form action="" method="post">
 				<tr>
 					<td colspan="2"> 
 						<label style="font-size: 14pt">Detalles del Producto</label>
@@ -31,8 +31,8 @@
 					<td><input readonly style="border-radius:15px;" type="text" name="in_stock" value="<?php echo isset($mod[0]->in_stock) ? $mod[0]->in_stock : ""; ?>"></td>
 				</tr>
 				<tr>
-					<td height="30" align="center" colspan="2">
-						<input class="btn btn-danger" type="submit" value="Lo quiero">
+					<td height="30" colspan="2">
+						<input class="btn btn-danger" type="submit" name="submit" value="Lo quiero">
 						<a href="index.php">Cancelar</a>			
 					</td>
 	          	</tr> 

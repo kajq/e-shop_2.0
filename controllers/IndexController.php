@@ -11,6 +11,7 @@ class IndexController extends CI_Controller{
         //llamo o incluyo el modelo
         $this->load->model("ProductsModel");
         $this->load->model("CategoriesModel");
+        $this->load->model("SalesModel");
          
         //cargo la libreria de sesiones
         $this->load->library("session");
@@ -23,7 +24,6 @@ class IndexController extends CI_Controller{
         $datos["categories"]=$this->CategoriesModel->ver();    
         //cargo la vista y le paso los datos
         $this->load->view("index",$datos); 
-         
     }
 
     public function mod($id){
@@ -33,32 +33,37 @@ class IndexController extends CI_Controller{
           $datos["mod"]=$this->ProductsModel->mod($id);
           $this->load->view("index",$datos);
           if($this->input->post("submit")){
-                //llamo a metodo que valida y respalda al imagen
-                //$image = ;
-                $this->validate_image($this->input->post("image_file"));        
-                
-                //llamo a funcion del modelo para modificar
-                $mod=$this->ProductsModel->mod(
-                        $id,
-                        $this->input->post("submit"),
-                        $this->input->post("sku"),
-                        $this->input->post("description"),
-                        $this->input->post("price"),
-                        $this->input->post("in_stock"),
-                        $this->image,
-                        $this->input->post("id_category")
-                        );
-                if($mod==true){
-                    //Sesion de una sola ejecución
-                    $this->session->set_flashdata('correcto', 'Usuario modificado correctamente');
-                }else{
-                    $this->session->set_flashdata('incorrecto', 'Usuario modificado correctamente');
+                $cart = $this->SalesModel->cart('', $_SESSION['user']);
+                if ($cart <> null) { 
+                    //si existe actualiza la fecha
+                    $this->SalesModel->update_cart($cart[0]->id_sale,0);
+                } else {
+                    //Si no existe inserta un carrito de compras nuevo para el usuario
+                    $this->SalesModel->add_cart($_SESSION['user']);
+                    //luego vuelve a consultar para obtener los datos
+                    $cart = $this->SalesModel->cart('', $_SESSION['user']);	
                 }
-                redirect('http://www.e-shop_2.0.com/index.php/ProductsController');
+                //verifico si ya el producto esta en stock
+                $product = $this->SalesModel->productExist($cart[0]->id_sale, $this->input->post("sku"));
+                //validación por si no hay del producto en el carrito
+                $sum  = isset($product[0]->sum) ? $product[0]->sum : 0;
+                //verifica que existan productos en bodega
+                if ($this->input->post("in_stock") > 0 && $sum < $this->input->post("in_stock")) {
+                    if ($product[0] <> null) {
+                        //si ya hay un producto se suma 1 a la cantidad 
+                        $new_sum = $product[0]->sum + 1;
+                        $this->SalesModel->change_sum($cart[0]->id_sale, $this->input->post("sku"), $new_sum);
+                    } else {
+                        //si no existe, se agrega el producto al carrito
+                        $this->SalesModel->add_product($cart[0]->id_sale);	
+                    }
+                } else	{//validación cuando detecta que no quedan productos
+                    echo '<script>alert("Lo sentimos, no quedan '.$this->input->post("description").' en bodega")</script> ';
+                    redirect('http://www.e-shop_2.0.com/index.php/IndexController');
+                } 
             }
-        }else{
-            redirect('http://www.e-shop_2.0.com/index.php/ProductsController');
         }
+        redirect('http://www.e-shop_2.0.com/index.php/SalesController');
     }
 }
 ?>

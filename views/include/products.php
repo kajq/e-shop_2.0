@@ -6,23 +6,25 @@ if ($mod == true) {
 	include ('product_details.php');
 }
 
-foreach($categories as $category){ 
-	echo "<h3>Categoria: " . $category->description . "</h3>";
-	echo "<div class='row'>";
-	foreach($products as $product){
-		if ($product->id_category == $category->id){ 
-			echo 	"<div class='span6'>";
-			echo 		"<div class='thumbnail'>";
-			echo		  "<h4 style='text-align:center'>".$product->description."</h4>";
-			echo		"<img src='/images/uploads/".$product->image_file."' width='250'/>";
-			echo 			"<div class='caption'>";
-			echo 				"<a class='pull-right' href='".base_url("IndexController/mod/$product->id")."' >".$product->sku ."</a> <br/>";
-			
-			echo 	"</div></div></div>";
-		}  
-	} 
-	echo "</div> <br>";
-	echo "<hr class='soften'/>";
-} 
+foreach($categories as $category){ ?>
+	<h3>Categoria: <?php echo $category->description; ?> </h3>
+	<div class='row'>
+	<?php foreach($products as $product){
+		if ($product->id_category == $category->id){ ?>
+			<div class='span6'>
+				<div class='thumbnail'>
+				  <h4 style='text-align:center'> <?php echo $product->description ?> </h4>
+					<img src='/images/uploads/<?php echo $product->image_file ?>' width='250'/>
+			 			<div class='caption'>
+							<a class='pull-right' href='<?php echo base_url("IndexController/mod/$product->id")?>' ><?php echo $product->sku ?></a> <br/>
+						 </div>
+				</div>
+			</div>
+	
+	</div> <br>
+	<hr class='soften'/>
+ <?php	}  
+	}
+} ?>
 
- ?>
+ 
