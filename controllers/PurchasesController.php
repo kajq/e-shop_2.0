@@ -24,6 +24,9 @@ class PurchasesController extends CI_Controller{
             redirect('http://www.e-shop_2.0.com/index.php');	
         }
         $purchases["ver"]=$this->PurchasesModel->ver($_SESSION['user']);    
+        $purchases["total_users"]=$this->PurchasesModel->total_users();  
+        $purchases["total_products"]=$this->PurchasesModel->total_products($_SESSION['user']);  
+        $purchases["total_sales"]=$this->PurchasesModel->total_sales($_SESSION['user']);  
         //cargo la vista y le paso los datos
         $this->load->view("purchases_view",$purchases);          
     }

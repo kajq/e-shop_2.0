@@ -1,6 +1,6 @@
 <?php
                //extendemos CI_Model
-class CategoriesModel extends CI_Model{
+class PurchasesModel extends CI_Model{
     public function __construct() {
         //llamamos al constructor de la clase padre
         parent::__construct();
@@ -27,5 +27,38 @@ class CategoriesModel extends CI_Model{
         //Devolvemos el resultado de la consulta
         return $consulta->result();
     }
+
+    //función que cuenta los usuarios registrados
+	public function total_users(){
+		$consulta=$this->db->query("SELECT COUNT(user) total FROM users");
+		//Devolvemos el resultado de la consulta
+        return $consulta->result();
+	}
+
+	//función que suma la cantidad de productos
+	public function total_products($user){
+		$where = 'WHERE s.state = 1 ';
+		if ($user <> 'admin') {
+			$where = $where . " AND s.user = '$user'";
+		}
+		$consulta=$this->db->query("SELECT sum(sp.sum) total FROM sold_products sp
+				 LEFT JOIN sales s
+				 ON s.id_sale = sp.id_sale " . $where) ;
+		//Devolvemos el resultado de la consulta
+        return $consulta->result();
+	}
+
+	//función que suma el total de dinero vendido
+	public function total_sales($user){
+		$where = "WHERE s.state = 1 ";
+		if ($user <> 'admin') {
+			$where = $where . " AND s.user = '$user'";
+		}
+		$consulta=$this->db->query("SELECT sum(sp.sum * sp.price) total FROM sold_products sp 
+				 LEFT JOIN sales s 
+				 ON s.id_sale = sp.id_sale " . $where);
+		//Devolvemos el resultado de la consulta
+        return $consulta->result();	
+	}
 }
 ?>
