@@ -23,9 +23,9 @@ class PurchasesController extends CI_Controller{
             echo '<script>alert("Usuario no autorizado!!")</script> ';
             redirect('http://www.e-shop_2.0.com/index.php');	
         }
-        $products["ver"]=$this->PurchasesModel->ver();    
+        $purchases["ver"]=$this->PurchasesModel->ver($_SESSION['user']);    
         //cargo la vista y le paso los datos
-        $this->load->view("purchases_view",$products);          
+        $this->load->view("purchases_view",$purchases);          
     }
 }
 ?>
