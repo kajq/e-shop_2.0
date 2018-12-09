@@ -24,7 +24,7 @@ class ProductsController extends CI_Controller{
         //valido rol de usuario
         if (@!$_SESSION['user'] || $_SESSION['rol'] == '0') {
             echo '<script>alert("Usuario no autorizado!!")</script> ';
-            echo "<script>location.href='index.php'</script>";	
+            redirect('http://www.e-shop_2.0.com/index.php');
         }
         $products["ver"]=$this->ProductsModel->ver();    
         //cargo la vista y le paso los datos

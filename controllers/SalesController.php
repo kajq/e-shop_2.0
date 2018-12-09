@@ -60,7 +60,7 @@ class SalesController extends CI_Controller{
         }//finalmente actualiza el estado a 1, que siginica vendido
         $this->SalesModel->update_cart($id_sale, 1);
         echo '<script>alert("Compra completada con exito!")</script> ';
-        redirect('http://www.e-shop_2.0.com/index.php/SalesController');
+        redirect('http://www.e-shop_2.0.com/index.php/PurchasesController');
         }
 }
 ?>
