@@ -56,7 +56,7 @@ if ($action == 'new') {
 			</div>
 			<br><br>
 			<div class = "nav-collapse">
-				<?php 	$mod	   = isset($mod) ? $mod : false;
+				<?php 	$mod = isset($mod) ? $mod : false;
                     if ($mod == true) {
                         include ('product_details.php');
                     }
@@ -100,14 +100,15 @@ if ($action == 'new') {
                 $total = 0;
                 foreach($products as $product){ ?>
 				<tr>
-					<td><?php echo "<a href='shopping_car.php?action=details&sku=id' >" . $product->sku_product . "</a> <br/>"; ?></td>
+					<td> <a href='<?php echo base_url("IndexController/mod/$product->sku_product")?>'> <?php echo $product->sku_product ?></a> <br/></td>
 					<td><?php echo $product->description; ?></td>
-					<td><?php echo $product->sum;
+                    <td><?php echo $product->sum;
+
 					if ($product->sum < $product->in_stock) {
-						echo "<a href='../shopping_car.php?action=add&sku=id&sum=sum'> <img src='\images\\new.png' width='20' title='Agregar'> </a>";
+						echo "<a href='" . base_url("SalesController/change_sum/add/$product->id_sale/$product->sku_product/$product->sum") . "'> <img src='\images\\new.png' width='20' title='Agregar'> </a>";
 					}
 					if ($product->sum > 1) {
-					 	echo "<a href='../shopping_car.php?action=less&sku=id&sum=sum'> <img src='\images\minus.png' width='20' title='Disminuir'> </a>";
+					 	echo "<a href='" . base_url("SalesController/change_sum/less/$product->id_sale/$product->sku_product/$product->sum") . "'> <img src='\images\minus.png' width='20' title='Disminuir'> </a>";
 					 }
 					 if ($product->sum > $product->in_stock) {
 					 	if ($product->in_stock == 0) {

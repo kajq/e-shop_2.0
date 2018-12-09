@@ -25,6 +25,16 @@ class SalesController extends CI_Controller{
         //cargo la vista y le paso los datos
         $this->load->view("shoppingcar_view",$datos); 
     }
+    //controlador para cantidad productos en carrito
+    public function change_sum($action, $id_sale, $sku, $sum){
+        if ($action == 'add') {
+            $sum++;
+        } elseif ($action == 'less') {
+            $sum--;
+        }		
+        $this->SalesModel->change_sum($id_sale, $sku, $sum);
+        redirect('http://www.e-shop_2.0.com/index.php/SalesController');
+    }
 
     //Controlador para eliminar
     public function eliminar($id){

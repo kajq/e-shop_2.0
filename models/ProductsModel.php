@@ -36,7 +36,8 @@ class ProductsModel extends CI_Model{
             $consulta=$this->db->query("SELECT prod.*, cat.description category FROM products prod 
             LEFT JOIN categories cat
             ON cat.id = prod.id_category
-            WHERE prod.id = $id;");
+            WHERE prod.sku = '$id';");
+            //WHERE prod.id = $id;");
             return $consulta->result();
         }else{
           $consulta=$this->db->query("

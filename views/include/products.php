@@ -16,7 +16,7 @@ foreach($categories as $category){ ?>
 				  <h4 style='text-align:center'> <?php echo $product->description ?> </h4>
 					<img src='/images/uploads/<?php echo $product->image_file ?>' width='250'/>
 			 			<div class='caption'>
-							<a class='pull-right' href='<?php echo base_url("IndexController/mod/$product->id")?>' ><?php echo $product->sku ?></a> <br/>
+							<a class='pull-right' href='<?php echo base_url("IndexController/mod/$product->sku")?>' ><?php echo $product->sku ?></a> <br/>
 						 </div>
 				</div>
 			</div>
