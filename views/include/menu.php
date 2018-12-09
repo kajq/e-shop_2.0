@@ -31,7 +31,7 @@ class menu
 		} else {
 			echo "<div class='navbar'>
 					<ul class='nav pull-right'>
-					 	<li><a href='../class/sign_off.php'>Cerrar Sesión</a></li>		 
+					 	<li><a href='".  base_url("IndexController/logoff") . "'>Cerrar Sesión</a></li>		 
 					</ul>
 				  </div>";
 			if ($this->rol == '1' || $this->rol == '0') {

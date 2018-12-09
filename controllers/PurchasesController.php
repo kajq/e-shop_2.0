@@ -10,7 +10,7 @@ class PurchasesController extends CI_Controller{
         $this->load->helper("url"); 
          
         //llamo o incluyo el modelo
-        $this->load->model("PurchasesModel");
+        $this->load->model("SalesModel");
          
         //cargo la libreria de sesiones
         $this->load->library("session");
@@ -29,6 +29,14 @@ class PurchasesController extends CI_Controller{
         $purchases["total_sales"]=$this->PurchasesModel->total_sales($_SESSION['user']);  
         //cargo la vista y le paso los datos
         $this->load->view("purchases_view",$purchases);          
+    }
+
+    public function details($id_sale){
+        $datos["cart"]    = $this->SalesModel->cart($id_sale,$_SESSION['user']);
+        $datos["person"]  = $this->SalesModel->Customer($_SESSION['user']);    
+        $datos["products"]=$this->SalesModel->ProductsCart($id_sale);    
+        //cargo la vista y le paso los datos
+        $this->load->view("purchases_details_view",$datos); 
     }
 }
 ?>

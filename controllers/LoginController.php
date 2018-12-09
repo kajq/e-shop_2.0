@@ -35,30 +35,21 @@ class LoginController extends CI_Controller{
             $this->input->post("password")
         );
             if (count($usuarios) > 0 ) {
-                //array asociativo con la llamada al metodo
-                //del modelo
-                ///$products["/ver"]=$this->usuarios_model->ver();    
-                //cargo la vista y le paso los datos
-                //$this->load->view("usuarios_view",$usuarios);
-                //print_r($usuarios["login"]);
+                //array asociativo con la llamada al metodo del modelo
                 $_SESSION['rol'] =	$usuarios[0]->rol;
                 $_SESSION['user']	  =	$usuarios[0]->user;
-                /*$_SESSION['name']	  =	$user['name'];
-                $_SESSION['last_name']= $user['last_name'];
-                $_SESSION['email']	  = $user['email'];
-                $_SESSION['phone']	  = $user['phone'];	*/
-                redirect('http://www.e-shop_2.0.com/index.php/IndexController');
                 //$this->load->library('../controllers/index_controller');
 
             }elseif ($this->input->post("user") == 'admin' && $this->input->post("password") == '123456789') {
             //de no encontrarse en la base datos tambien valida este usuario admin predeterminado
-                /*$_SESSION['username'] =	$this->user;
-                $_SESSION['rol']	  =	2;*/
+                $_SESSION['user'] =	'Administrador';
+                $_SESSION['rol']	  =	2;
             }	else{
                 //si el admin tampoco coincide da mensaje de error de usuario
                 echo '<script>alert("Usuario o Contraseña incorrecto!")</script> ';
                 $this->load->view("login_view");            
             }
+            redirect('http://www.e-shop_2.0.com/index.php/IndexController');
         }
     }
      

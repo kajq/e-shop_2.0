@@ -73,7 +73,7 @@ $purchases = $oPurchase->select_purchases($user);*/
 					<td><?php echo $purchases->name . " " . $purchases->last_name ?></td>
 					<td><?php echo $purchases->sum ?></td>
 					<td><?php echo '₡'.$purchases->total ?></td>
-					<td><a <?php echo "href='/purchase_details.php?id_sale='" ?> >
+					<td><a href='<?php echo base_url("PurchasesController/details/$product->id_sale")?>' >
                         <img src="\images\search.png" width="30" title="Detalles"> 
                     	</a></td>
 				</tr>

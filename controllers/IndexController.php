@@ -26,6 +26,11 @@ class IndexController extends CI_Controller{
         $this->load->view("index",$datos); 
     }
 
+    public function logoff(){
+        session_destroy();
+        redirect('http://www.e-shop_2.0.com/index.php/IndexController');
+    }
+
     public function mod($id){
         if($id <> null){
           $datos["products"]=$this->ProductsModel->ver();    

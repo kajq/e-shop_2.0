@@ -65,7 +65,7 @@
 					<td>Eliminar</td>
 				</tr>
                 <?php 
-                $total = 0;
+                $total = 0; 
                 foreach($products as $product){ ?>
 				<tr>
 					<td> <a href='<?php echo base_url("IndexController/mod/$product->sku_product")?>'> <?php echo $product->sku_product ?></a> <br/></td>
