@@ -65,7 +65,7 @@ class menu
 			}	  
 			echo "<div class='navbar'>
 					<ul class='nav pull-right'>
-						<li><a href='shopping_history.php'>Historial</a></li>		 
+					<li><a href='" . site_url('../PurchasesController') . "'>Historial</a></li>		 
 					</ul>
 		  		</div>";
 			echo "<div class='navbar'>

@@ -11,15 +11,16 @@ class PurchasesController extends CI_Controller{
          
         //llamo o incluyo el modelo
         $this->load->model("SalesModel");
+        $this->load->model("PurchasesModel");
          
         //cargo la libreria de sesiones
         $this->load->library("session");
     }
      
     //controlador por defecto
-    public function index(){
+    public function index(){ 
         //valido rol de usuario
-        if (@!$_SESSION['user'] || $_SESSION['rol'] == '0') {
+        if (@!$_SESSION['user'] ) {
             echo '<script>alert("Usuario no autorizado!!")</script> ';
             redirect('http://www.e-shop_2.0.com/index.php');	
         }
@@ -27,7 +28,7 @@ class PurchasesController extends CI_Controller{
         $purchases["total_users"]=$this->PurchasesModel->total_users();  
         $purchases["total_products"]=$this->PurchasesModel->total_products($_SESSION['user']);  
         $purchases["total_sales"]=$this->PurchasesModel->total_sales($_SESSION['user']);  
-        //cargo la vista y le paso los datos
+        //cargo la vista y le paso los datos 
         $this->load->view("purchases_view",$purchases);          
     }
 

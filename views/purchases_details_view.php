@@ -6,13 +6,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Keilor Jiménez">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-	<link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <script src="bootstrap/js/jquery-1.8.3.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="/bootstrap/js/jquery-1.8.3.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
-	<body background="images/fondotot.jpg" style="background-attachment: fixed">
+	<body background="/images/fondotot.jpg" style="background-attachment: fixed">
 		<div class="container">
 			<header class="header">
 				<?php //include ('include/cabecera.php');?>
@@ -64,13 +64,12 @@
 				<tr>
                     <td> <a href='<?php echo base_url("IndexController/mod/$product->sku_product")?>'> <?php echo $product->sku_product ?></a> <br/></td>
 					<td><?php echo $product->description; ?></td>
-					<td><?php echo $products->sum; ?>		</td>
-					<td><?php echo "₡".$products->price; ?></td>
-					<td><?php echo "₡".$products->total; ?></td>
+					<td><?php echo $product->sum; ?>		</td>
+					<td><?php echo "₡".$product->price; ?></td>
+					<td><?php echo "₡".$product->total; ?></td>
 					</tr>
 				<?php 
-					$total = $total + $products->total;
-					$cont++;
+					$total = $total + $product->total;
 				}
 				 ?>
 				 <tr>	
