@@ -20,7 +20,8 @@ class SalesController extends CI_Controller{
     //controlador por defecto
     public function index(){
         $cart=$this->SalesModel->cart('',$_SESSION['user']);    
-        $datos["person"]= $this->SalesModel->Customer($_SESSION['user']);    
+        $datos["cart"]    = $cart[0]->id_sale;
+        $datos["person"]  = $this->SalesModel->Customer($_SESSION['user']);    
         $datos["products"]=$this->SalesModel->ProductsCart($cart[0]->id_sale);    
         //cargo la vista y le paso los datos
         $this->load->view("shoppingcar_view",$datos); 
@@ -37,7 +38,7 @@ class SalesController extends CI_Controller{
     }
 
     //Controlador para eliminar
-    public function eliminar($id){
+    public function eliminar($id){ 
         if(is_numeric($id)){
           $eliminar=$this->SalesModel->drop_product($id);
           if($eliminar==true){
@@ -50,14 +51,16 @@ class SalesController extends CI_Controller{
     }
 
     //Función que llama la función de bajar productos a todos los que estan en el carrito
-	/*function to_buy($id_sale, $products){
-        for ($i=0; $i < count($products)/7; $i++) { 
-            $new_sum = $products['in_stock='.$i] - $products['sum='.$i];
-            $this->lower_stock($products['sku='.$i], $new_sum);
+	public function to_buy($id_sale){
+        $cart     =     $this->SalesModel->cart('',$_SESSION['user']);    
+        $products =     $this->SalesModel->ProductsCart($cart[0]->id_sale);
+        foreach($products as $product){
+            $new_sum = $product->in_stock - $product->sum;
+            $this->SalesModel->lower_stock($product->sku_product, $new_sum);
         }//finalmente actualiza el estado a 1, que siginica vendido
-        $this->update_cart($id_sale, 1);
+        $this->SalesModel->update_cart($id_sale, 1);
         echo '<script>alert("Compra completada con exito!")</script> ';
-        echo "<script>location.href='../shopping_history.php'</script>";
-        }//redirecciona*/
+        redirect('http://www.e-shop_2.0.com/index.php/SalesController');
+        }
 }
 ?>

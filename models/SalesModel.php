@@ -40,7 +40,7 @@ class SalesModel extends CI_Model{
     }
     //actualiza la fecha del carrito
     public function update_cart($id_sale, $state){   
-        $consulta=$this->db->query("UPDATE sales SET sale_date = now(), state = $state
+        $consulta=$this->db->query("UPDATE sales SET sale_date = now(), state = '$state'
         WHERE id_sale = '$id_sale';");
         if($consulta==true){
             return true;

@@ -1,37 +1,3 @@
-.......<?php	//Crud que represental al carrito de compras
-/*session_start();
-include ("class\sales.php");
-include ("class\products.php");
-if (@!$_SESSION['username'] || $_SESSION['rol'] == '2') {
-		echo '<script>alert("Debes registrarte para poder comprar")</script> ';
-		echo "<script>location.href='../index.php'</script>";	
-	}
-extract($_GET);
-$oSale = new sales();
-$oProduct = new products();
-$customer = $oSale->customer();
-$cart 	  = $oSale->cart('');
-$products = $oSale->products_cart($cart['id_sale']);
-$action	    = isset($_GET["action"])     ? $_GET["action"] : "";
-$sum	    = isset($_GET["sum"])     ? $_GET["sum"] : "";
-if ($action == 'new') {
-	$oSale->check_cart();
-} elseif ($action == 'add') {
-	$sum++;
-	$oSale->change_sum($cart['id_sale'], $sku, $sum);
-	echo "<script>location.href='../shopping_car.php'</script>";		
-} elseif ($action == 'less') {
-	$sum--;
-	$oSale->change_sum($cart['id_sale'], $sku, $sum);
-	echo "<script>location.href='../shopping_car.php'</script>";		
-} elseif ($action == 'drop') {
-	$oSale->drop_product($id);
-	echo "<script>location.href='../shopping_car.php'</script>";		
-} elseif ($action == 'to_buy') {
-	$oSale->to_buy($cart['id_sale'],$products);
-}
-*/
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +32,7 @@ if ($action == 'new') {
 						<td colspan="4"><h2>Tienda Electronica KAJQ S.A.</h2></td>
 					</tr>
 					<tr>
-						<td colspan="4"><h4>www.e-shop_2.0.cpm</h4></td>
+						<td colspan="4"><h4>www.e-shop_2.0.com</h4></td>
 					</tr>
 					<tr>
                         <form action="" method="post">
@@ -75,7 +41,9 @@ if ($action == 'new') {
 						<td><input type="text" readonly value="<?php echo $customer->name . " " . $customer->last_name; ?>"></td>
 						<td><label>Fecha:</label></td>
 						<td><input type="text" readonly data-date='' data-date-format="DD MMMM YYYY" value="<?php echo $customer->date; ?>"></td>
-						<td rowspan="1"> <input class="btn btn-danger" type="submit" name="submit" value="Confirmar Compra" onclick="return confirm('¿Esta seguro de realizar la compra?')"></td>
+                        <!-- <td rowspan="1"> <input class="btn btn-danger" type="submit" name="submit" value="Confirmar Compra" onclick="return confirm('¿Esta seguro de realizar la compra?')"></td> -->
+                        <td><a href=' <?php echo base_url("SalesController/to_buy/$cart") ?>' onclick="return confirm('¿Esta seguro de comprar estos productos?')">
+                        <img src="\images\confirm.jpg" width="100" title="Confirmar Compra"></td>
 					</tr>
 					<tr>
 						<td><label>Correo Electronico</label></td>
