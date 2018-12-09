@@ -26,6 +26,19 @@ class SalesController extends CI_Controller{
         $this->load->view("shoppingcar_view",$datos); 
     }
 
+    //Controlador para eliminar
+    public function eliminar($id){
+        if(is_numeric($id)){
+          $eliminar=$this->SalesModel->drop_product($id);
+          if($eliminar==true){
+              $this->session->set_flashdata('correcto', 'Usuario eliminado correctamente');
+          }else{
+              $this->session->set_flashdata('incorrecto', 'Usuario eliminado correctamente');
+          }
+        }
+        redirect('http://www.e-shop_2.0.com/index.php/SalesController');
+    }
+
     //Función que llama la función de bajar productos a todos los que estan en el carrito
 	/*function to_buy($id_sale, $products){
         for ($i=0; $i < count($products)/7; $i++) { 

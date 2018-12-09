@@ -31,7 +31,7 @@ class IndexController extends CI_Controller{
           $datos["products"]=$this->ProductsModel->ver();    
           $datos["categories"]=$this->CategoriesModel->ver(); 
           $datos["mod"]=$this->ProductsModel->mod($id);
-          $this->load->view("index",$datos);
+          $this->load->view("index",$datos); 
           if($this->input->post("submit")){
                 $cart = $this->SalesModel->cart('', $_SESSION['user']);
                 if ($cart <> null) { 
@@ -45,25 +45,30 @@ class IndexController extends CI_Controller{
                 }
                 //verifico si ya el producto esta en stock
                 $product = $this->SalesModel->productExist($cart[0]->id_sale, $this->input->post("sku"));
+                print_r($product);
                 //validación por si no hay del producto en el carrito
                 $sum  = isset($product[0]->sum) ? $product[0]->sum : 0;
                 //verifica que existan productos en bodega
                 if ($this->input->post("in_stock") > 0 && $sum < $this->input->post("in_stock")) {
-                    if ($product[0] <> null) {
+                    if ($sum > 0) {
                         //si ya hay un producto se suma 1 a la cantidad 
-                        $new_sum = $product[0]->sum + 1;
+                        $new_sum = $sum + 1;
                         $this->SalesModel->change_sum($cart[0]->id_sale, $this->input->post("sku"), $new_sum);
                     } else {
                         //si no existe, se agrega el producto al carrito
-                        $this->SalesModel->add_product($cart[0]->id_sale);	
+                        $this->SalesModel->add_product(
+                            $cart[0]->id_sale, 
+                            $this->input->post("sku"), 
+                            $this->input->post("description"), 
+                            $this->input->post("price"));	
                     }
                 } else	{//validación cuando detecta que no quedan productos
                     echo '<script>alert("Lo sentimos, no quedan '.$this->input->post("description").' en bodega")</script> ';
                     redirect('http://www.e-shop_2.0.com/index.php/IndexController');
                 } 
+                redirect('http://www.e-shop_2.0.com/index.php/SalesController');
             }
         }
-        redirect('http://www.e-shop_2.0.com/index.php/SalesController');
     }
 }
 ?>

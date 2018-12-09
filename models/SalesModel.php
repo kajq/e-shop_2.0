@@ -54,7 +54,11 @@ class SalesModel extends CI_Model{
         //Hacemos una consulta
         $consulta=$this->db->query("SELECT * FROM sold_products WHERE sku_product = '$sku' AND id_sale = '$id_sale'");
         //Devolvemos el resultado de la consulta
-        return $consulta->result();
+        if($consulta==true){
+            return $consulta->result();
+        }else{
+            return false;
+        }
     }
 
     //cambia la cantidad de productos en carrito
@@ -67,6 +71,7 @@ class SalesModel extends CI_Model{
             return false;
         }
     }
+
     //disminuye la cantidad de productos en stock
     public function lower_stock( $sku, $new_sum){   
         $consulta=$this->db->query("UPDATE products SET in_stock = '$new_sum' WHERE sku = '$sku';");
@@ -77,10 +82,10 @@ class SalesModel extends CI_Model{
         }
     }
     //inserta producto al carrito
-    public function add_product($id_sale){  
-        $consulta=$this->db->query("INSERT INTO sold_product
+    public function add_product($id_sale, $sku, $description, $price){  
+        $consulta=$this->db->query("INSERT INTO sold_products
 		(id, id_Sale, sku_product, description, price, sum)
-		VALUES (NULL, '$id_sale', '$this->sku', '$this->description', '$this->price', 1);");
+		VALUES (NULL, '$id_sale', '$sku', '$description', '$price', 1);");
         if($consulta==true){
             return true;
         }else{

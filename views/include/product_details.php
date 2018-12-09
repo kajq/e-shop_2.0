@@ -24,7 +24,7 @@
 				</tr>
 				<tr>
 					<td><label style="font-size: 14pt"><b>Precio: </b></label></td>
-					<td><input readonly style="border-radius:15px;" type="text" name="price" value="<?php echo isset($mod[0]->price) ? $mod[0]->price : ""; ?>"></td>
+					<td><input readonly style="border-radius:15px;" type="text" name="price" value="<?php echo isset($mod[0]->price) ? $mod[0]->price : 0; ?>"></td>
 				</tr>
 				<tr>
 					<td><label style="font-size: 14pt"><b>Existencias: </b></label></td>

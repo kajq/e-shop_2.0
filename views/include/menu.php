@@ -42,7 +42,7 @@ class menu
 				  </div>";
 			echo "<div class='navbar'>
 					<ul class='nav pull-right'>
-					 	<li><a href='shopping_car.php'>Lista de deseos</a></li>		 
+					 	<li><a href='". site_url('../SalesController') ."'>Lista de deseos</a></li>		 
 					</ul>
 				  </div>";	  	    	
 			}	  

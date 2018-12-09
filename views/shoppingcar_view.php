@@ -104,10 +104,10 @@ if ($action == 'new') {
 					<td><?php echo $product->description; ?></td>
 					<td><?php echo $product->sum;
 					if ($product->sum < $product->in_stock) {
-						echo "<a href='../shopping_car.php?action=add&sku=".$product->sku."&sum=".$product->sum."'> <img src='\images\\new.png' width='20' title='Agregar'> </a>";
+						echo "<a href='../shopping_car.php?action=add&sku=id&sum=sum'> <img src='\images\\new.png' width='20' title='Agregar'> </a>";
 					}
 					if ($product->sum > 1) {
-					 	echo "<a href='../shopping_car.php?action=less&sku=". $product->sku ."&sum=".$product->sum."'> <img src='\images\minus.png' width='20' title='Disminuir'> </a>";
+					 	echo "<a href='../shopping_car.php?action=less&sku=id&sum=sum'> <img src='\images\minus.png' width='20' title='Disminuir'> </a>";
 					 }
 					 if ($product->sum > $product->in_stock) {
 					 	if ($product->in_stock == 0) {
@@ -115,14 +115,14 @@ if ($action == 'new') {
 					 	} else {
 					 		$msj = "Disculpa, pero solo quedan ".$product->in_stock . " ejemplares de este producto \n Favor disminuir la cantidad";
 					 	}
-					   	echo "<img src='..\images\alert.png' width='20' title='".$msj."'>";
+					   	echo "<img src='/images/alert.png' width='20' title='".$msj."'>";
 					   }  
 					 ?>
                          
 					</td>
 					<td><?php echo "₡".$product->price; ?></td>
 					<td><?php echo "₡".$product->total; ?></td>
-					<td><a <?php echo "href='../shopping_car.php?action=drop&id=" . $product->id . "'" ?> onclick="return confirm('¿Esta seguro de eliminar este producto?')">
+					<td><a href=' <?php echo base_url("SalesController/eliminar/$product->id") ?>' onclick="return confirm('¿Esta seguro de eliminar este producto?')">
                         <img src="\images\delete.png" width="30" title="Eliminar"> 
                     	</a>
                 	</td>
