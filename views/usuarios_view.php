@@ -56,4 +56,4 @@ foreach($ver as $fila){
 ?>
 </table>
     </body>
-</html>
+</html>¿w

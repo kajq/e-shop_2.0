@@ -50,7 +50,6 @@ class IndexController extends CI_Controller{
                 }
                 //verifico si ya el producto esta en stock
                 $product = $this->SalesModel->productExist($cart[0]->id_sale, $this->input->post("sku"));
-                print_r($product);
                 //validación por si no hay del producto en el carrito
                 $sum  = isset($product[0]->sum) ? $product[0]->sum : 0;
                 //verifica que existan productos en bodega
@@ -66,12 +65,13 @@ class IndexController extends CI_Controller{
                             $this->input->post("sku"), 
                             $this->input->post("description"), 
                             $this->input->post("price"));	
+                            redirect('http://www.e-shop_2.0.com/index.php/SalesController');
                     }
                 } else	{//validación cuando detecta que no quedan productos
                     echo '<script>alert("Lo sentimos, no quedan '.$this->input->post("description").' en bodega")</script> ';
-                    redirect('http://www.e-shop_2.0.com/index.php/IndexController');
+                    //redirect('http://www.e-shop_2.0.com/index.php/IndexController');
                 } 
-                redirect('http://www.e-shop_2.0.com/index.php/SalesController');
+                
             }
         }
     }

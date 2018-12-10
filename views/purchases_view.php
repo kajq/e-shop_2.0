@@ -37,15 +37,15 @@ $purchases = $oPurchase->select_purchases($user);*/
 					<table>
 						<tr>
 							<td>Usuarios Registrados</td>
-							<td><input type="number" readonly value="<?php echo $total_users[0]->total; ?>"></td>
+							<td><input type="number" readonly value="<?php echo $all_users[0]->total; ?>"></td>
 						</tr>
 						<tr>
 							<td>Productos Vendidos</td>
-							<td><input type="number" readonly value="<?php echo $total_products[0]->total;?>"></td>
+							<td><input type="number" readonly value="<?php echo $all_products[0]->total;?>"></td> 
 						</tr>
 						<tr>
 							<td>Total de Ventas</td>
-							<td><input type="text" readonly value="<?php echo '₡'.$total_sales[0]->total; ?>"></td>
+							<td><input type="text" readonly value="<?php echo '₡'.$all_sales[0]->total; ?>"></td>
 						</tr>
 					</table>
 				</div>
