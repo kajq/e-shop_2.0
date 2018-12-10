@@ -26,7 +26,7 @@
 			</div>
 			<div class= "navbar">
 				<ul class= "nav pull-right">
-					<li><a href="register.php">Registrarme</a></li>
+					<li><a href="<?php echo site_url('../LoginController/add'); ?>">Registrarme</a></li>
 				</ul>
 			</div>
 

@@ -52,30 +52,55 @@ class LoginController extends CI_Controller{
             redirect('http://www.e-shop_2.0.com/index.php/IndexController');
         }
     }
+
+    //Función que verifica las contraseñas del formulario sean iguales
+	public function check_pass($pass, $repass){
+		$check = true;
+		if ($pass <> $repass) {     
+			$check = false;
+		} 
+		return $check;
+    }
      
     //controlador para añadir
     public function add(){
-         
+        $this->load->view("register_view");
         //compruebo si se a enviado submit
         if($this->input->post("submit")){
-         
-        //llamo al metodo add
-        $add=$this->usuarios_model->add(
-                $this->input->post("email"),
-                $this->input->post("password"),
-                $this->input->post("nombre"),
-                $this->input->post("apellido")
-                );
+           if ($this->check_pass($this->input->post("password"), $this->input->post("pass_confirm")) == true) {
+            $email_exist = $this->UsersModel->check_mail($this->input->post("email"));
+                if ($email_exist == false) {
+                   //llamo al metodo add
+                   $addPerson = $this->UsersModel->addPerson(
+                    $this->input->post("user"),
+                    $this->input->post("name"),
+                    $this->input->post("lastname"),
+                    $this->input->post("phone"),
+                    $this->input->post("email")
+                    );
+                    if ($addPerson == true){
+                        $addUser=$this->UsersModel->addUser(
+                        $this->input->post("user"),
+                        $this->input->post("password"),
+                        0, //rol
+                        0 //state
+                        );  
+                        if ($addUser == true){
+                            "Usuario Registrado"; 
+                            redirect('http://www.e-shop_2.0.com/index.php/LoginController');
+                        }
+                    } else {
+                        echo '<script>alert("El usuario ' . $this->input->post("user") . ' ya esta registrado, debe escoger otro usuario" )</script>' ; //
+                    }
+            
+                } else {
+                    echo '<script>alert("Correo electronico ya existe")</script> '; 
+                }
+              }  else {
+                echo '<script>alert("Contraseñas no coinciden")</script> '; 
+              }
+                
         }
-        if($add==true){
-            //Sesion de una sola ejecución
-            $this->session->set_flashdata('correcto', 'Usuario añadido correctamente');
-        }else{
-            $this->session->set_flashdata('incorrecto', 'Usuario añadido correctamente');
-        }
-         
-        //redirecciono la pagina a la url por defecto
-        redirect(base_url());
     }
      
     //controlador para modificar al que
@@ -106,19 +131,5 @@ class LoginController extends CI_Controller{
         }
     }
      
-    //Controlador para eliminar
-    public function eliminar($id_usuario){
-        if(is_numeric($id_usuario)){
-          $eliminar=$this->usuarios_model->eliminar($id_usuario);
-          if($eliminar==true){
-              $this->session->set_flashdata('correcto', 'Usuario eliminado correctamente');
-          }else{
-              $this->session->set_flashdata('incorrecto', 'Usuario eliminado correctamente');
-          }
-          redirect(base_url());
-        }else{
-          redirect(base_url());
-        }
-    }
 }
 ?>

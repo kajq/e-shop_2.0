@@ -25,7 +25,7 @@ class menu
 				</div>";
 			echo "<div class= 'navbar'>
 					<ul class= 'nav pull-right'>
-						<li><a href='register.php'>Registrarme</a></li>
+					<li><a href="  . site_url('../LoginController/add') . ">Registrarme</a></li>
 					</ul>
 				</div>";
 		} else {
