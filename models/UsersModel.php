@@ -11,7 +11,7 @@ class UsersModel extends CI_Model{
 
     public function login($user, $password){
       $consulta = $this->db->query("SELECT * FROM users WHERE user = '$user' and password = '$password'");
-      
+      return $consulta->result();
     }
      
     public function ver(){

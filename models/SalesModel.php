@@ -101,7 +101,11 @@ class SalesModel extends CI_Model{
         //Hacemos una consulta
         $consulta=$this->db->query("SELECT * FROM sales WHERE user = '$user' AND " . $where );
         //Devolvemos el resultado de la consulta
-        return $consulta->result();
+        if($consulta==true){
+            return $consulta->result();
+        }else{
+            return false;
+        }
     }
 
     public function drop_product($id){  

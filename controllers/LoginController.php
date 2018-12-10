@@ -38,18 +38,16 @@ class LoginController extends CI_Controller{
                 //array asociativo con la llamada al metodo del modelo
                 $_SESSION['rol'] =	$usuarios[0]->rol;
                 $_SESSION['user']	  =	$usuarios[0]->user;
-                //$this->load->library('../controllers/index_controller');
-
+                redirect('http://www.e-shop_2.0.com/index.php/IndexController');
             }elseif ($this->input->post("user") == 'admin' && $this->input->post("password") == '123456789') {
             //de no encontrarse en la base datos tambien valida este usuario admin predeterminado
                 $_SESSION['user'] =	'Administrador';
                 $_SESSION['rol']	  =	2;
+                redirect('http://www.e-shop_2.0.com/index.php/IndexController');
             }	else{
                 //si el admin tampoco coincide da mensaje de error de usuario
                 echo '<script>alert("Usuario o Contraseña incorrecto!")</script> ';
-                $this->load->view("login_view");            
             }
-            redirect('http://www.e-shop_2.0.com/index.php/IndexController');
         }
     }
 

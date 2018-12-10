@@ -19,10 +19,13 @@ class SalesController extends CI_Controller{
      
     //controlador por defecto
     public function index(){
-        $cart=$this->SalesModel->cart('',$_SESSION['user']);    
-        $datos["cart"]    = $cart[0]->id_sale;
+        $cart=$this->SalesModel->cart('',$_SESSION['user']);
+        if($cart <> false){
+            $datos["cart"]    = $cart[0]->id_sale;
+            $datos["products"]=$this->SalesModel->ProductsCart($cart[0]->id_sale);    
+        }    
         $datos["person"]  = $this->SalesModel->Customer($_SESSION['user']);    
-        $datos["products"]=$this->SalesModel->ProductsCart($cart[0]->id_sale);    
+        
         //cargo la vista y le paso los datos
         $this->load->view("shoppingcar_view",$datos); 
     }

@@ -65,7 +65,9 @@
 					<td>Eliminar</td>
 				</tr>
                 <?php 
-                $total = 0; 
+				$total = 0;
+				$products = isset($products) ? $products : 0;
+				if ($products <> 0 ){
                 foreach($products as $product){ ?>
 				<tr>
 					<td> <a href='<?php echo base_url("IndexController/mod/$product->sku_product")?>'> <?php echo $product->sku_product ?></a> <br/></td>
@@ -98,8 +100,9 @@
 				</tr>
 				<?php 
 					$total = $total + $product->total;
+					}
 				}
-				if (count($products) == 0) {
+				else {
 					echo "<tr><td colspan='6'><label>No hay productos en lista de deseos</label></td></tr>";
 				}
 				 ?>
