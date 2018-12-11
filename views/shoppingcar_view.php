@@ -42,8 +42,6 @@
 						<td><label>Fecha:</label></td>
 						<td><input type="text" readonly data-date='' data-date-format="DD MMMM YYYY" value="<?php echo $customer->date; ?>"></td>
                         <!-- <td rowspan="1"> <input class="btn btn-danger" type="submit" name="submit" value="Confirmar Compra" onclick="return confirm('¿Esta seguro de realizar la compra?')"></td> -->
-                        <td><a href=' <?php echo base_url("SalesController/to_buy/$cart") ?>' onclick="return confirm('¿Esta seguro de comprar estos productos?')">
-                        <img src="\images\confirm.jpg" width="100" title="Confirmar Compra"></td>
 					</tr>
 					<tr>
 						<td><label>Correo Electronico</label></td>
@@ -67,6 +65,7 @@
                 <?php 
 				$total = 0;
 				$products = isset($products) ? $products : 0;
+				$error = false;
 				if ($products <> 0 ){
                 foreach($products as $product){ ?>
 				<tr>
@@ -82,9 +81,11 @@
 					 }
 					 if ($product->sum > $product->in_stock) {
 					 	if ($product->in_stock == 0) {
-					 		$msj = "Disculpa, pero ya no quedan ejemplares de este producto \n Favor eliminar este registro";
+							 $msj = "Disculpa, pero ya no quedan ejemplares de este producto \n Favor eliminar este registro";
+							 $error = true;
 					 	} else {
-					 		$msj = "Disculpa, pero solo quedan ".$product->in_stock . " ejemplares de este producto \n Favor disminuir la cantidad";
+							 $msj = "Disculpa, pero solo quedan ".$product->in_stock . " ejemplares de este producto \n Favor disminuir la cantidad";
+							 $error = true;
 					 	}
 					   	echo "<img src='/images/alert.png' width='20' title='".$msj."'>";
 					   }  
@@ -104,6 +105,12 @@
 				}
 				else {
 					echo "<tr><td colspan='6'><label>No hay productos en lista de deseos</label></td></tr>";
+				}
+				if ($error == false){ ?>
+					<td><a href=' <?php echo base_url("SalesController/to_buy/$cart") ?>' onclick="return confirm('¿Esta seguro de comprar estos productos?')">
+					<img src="\images\confirm.jpg" width="100" title="Confirmar Compra"></td>
+				<?php } else {
+					echo "<tr><td colspan='6'><label>Verifique los productos para poder comprar!</label></td></tr>";
 				}
 				 ?>
 				 <tr>	

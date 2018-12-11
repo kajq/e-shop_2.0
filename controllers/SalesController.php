@@ -57,6 +57,7 @@ class SalesController extends CI_Controller{
 	public function to_buy($id_sale){
         $cart     =     $this->SalesModel->cart('',$_SESSION['user']);    
         $products =     $this->SalesModel->ProductsCart($cart[0]->id_sale);
+        if (count($products) > 0){
         foreach($products as $product){
             $new_sum = $product->in_stock - $product->sum;
             $this->SalesModel->lower_stock($product->sku_product, $new_sum);
@@ -64,6 +65,10 @@ class SalesController extends CI_Controller{
         $this->SalesModel->update_cart($id_sale, 1);
         echo '<script>alert("Compra completada con exito!")</script> ';
         redirect('http://www.e-shop_2.0.com/index.php/PurchasesController');
+        } else {
+            echo '<script>alert("No puedes comprar por que no tienes productos en carrito")</script> ';
+            $this->index(); 
         }
+    }
 }
 ?>

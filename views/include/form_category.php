@@ -16,8 +16,8 @@
         <b>Activo</b>
         <input class="form-check-input" type="checkbox" name="state" 
         <?php echo isset($mod[0]->state) ? $mod[0]->state : ""; ?>>
-        <b style='padding-left: 6em'></b>
+        
         <input type='submit' class='btn btn-danger' value='Guardar' name='submit' >
-        <input type="submit" class="btn btn-danger" value="Cancelar" onclick = "window.location.href='../admin_categories.php'">
+        <input type="boton" class="btn btn-danger" value="Cancelar" onclick = "window.location.href='/index.php/CategoriesController'">
 	</label>
 </form>

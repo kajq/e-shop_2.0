@@ -14,13 +14,14 @@
 	    <script src="../../bootstrap/js/bootstrap.min.js"></script>
 	<title>Login</title>
 </head>
-<body background="images/fondotot.jpg" style="background-attachment: fixed" >
+<body background="/images/fondotot.jpg" style="background-attachment: fixed" >
 	<div class="container">
 		<header class="header">
 					<?php // include ('include/cabecera.php');?>
 		</header>
 			<div class="navbar">
 				<ul class="nav pull-right">
+					<br>
 					<li><a href=<?php echo site_url('../IndexController')?>>Página Inicio</a></li>			 
 				</ul>
 			</div>
@@ -53,7 +54,7 @@
 	          	</tr> 
 	          	<tr>
 					<td height="30" align=center colspan="2">
-						<a href="recovery_pass.php">¿Olvido su contraseña?</a>			 
+						<a >¿Olvido su contraseña?</a>			 
 					</td>
 				</tr>
 		</table>

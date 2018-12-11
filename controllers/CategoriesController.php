@@ -89,12 +89,12 @@ class CategoriesController extends CI_Controller{
         if(is_numeric($id)){
           $eliminar=$this->CategoriesModel->eliminar($id);
           if($eliminar==true){
-              $this->session->set_flashdata('correcto', 'Usuario eliminado correctamente');
+                redirect('http://www.e-shop_2.0.com/index.php/CategoriesController');
           }else{
-              $this->session->set_flashdata('incorrecto', 'Usuario eliminado correctamente');
+            echo '<script>alert("No se puede eliminar la categoría, verifique que no tiene productos relacionados")</script> ';
           }
         }
-        redirect('http://www.e-shop_2.0.com/index.php/CategoriesController');
+        $this->index();
     }
 }
 ?>

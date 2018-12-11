@@ -49,12 +49,17 @@ class CategoriesModel extends CI_Model{
     }
      
     public function eliminar($id){
-       $consulta=$this->db->query("DELETE FROM categories WHERE id = $id");
-       if($consulta==true){
-           return true;
-       }else{
-           return false;
-       }
+       $products=$this->db->query("SELECT prod.* FROM products prod WHERE prod.id_category = '$id'; ");
+       if (count($products->result()) == 0){
+            $consulta=$this->db->query("DELETE FROM categories WHERE id = $id");
+            if($consulta==true){
+                return true;
+            }else{
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
  
  

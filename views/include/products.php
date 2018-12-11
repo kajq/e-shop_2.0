@@ -21,10 +21,10 @@ foreach($categories as $category){ ?>
 				</div>
 			</div>
 	
-	</div> <br>
 	<hr class='soften'/>
  <?php	}  
 	}
+	echo "</div> <br>";
 } ?>
 
  

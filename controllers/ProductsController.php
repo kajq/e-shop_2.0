@@ -56,7 +56,6 @@ class ProductsController extends CI_Controller{
                 echo '<script>alert("Producto agregada correctamente")</script> ';
                 //redirecciono la pagina a la url por defecto
                 redirect('http://www.e-shop_2.0.com/index.php/ProductsController');
-                
             }else{
                 echo '<script>alert("No se pudo agregar el producto")</script> ';
             }
@@ -73,8 +72,8 @@ class ProductsController extends CI_Controller{
           if($this->input->post("submit")){
                 //llamo a metodo que valida y respalda al imagen
                 //$image = ;
-                $this->validate_image($this->input->post("image_file"));        
-                
+                $validate_image = $this->validate_image($this->input->post("image_file"));        
+                if ($validate_image == true){
                 //llamo a funcion del modelo para modificar
                 $mod=$this->ProductsModel->mod(
                         $sku,
@@ -86,13 +85,8 @@ class ProductsController extends CI_Controller{
                         $this->image,
                         $this->input->post("id_category")
                         );
-                if($mod==true){
-                    //Sesion de una sola ejecución
-                    $this->session->set_flashdata('correcto', 'Usuario modificado correctamente');
-                }else{
-                    $this->session->set_flashdata('incorrecto', 'Usuario modificado correctamente');
-                }
-                redirect('http://www.e-shop_2.0.com/index.php/ProductsController');
+                    redirect('http://www.e-shop_2.0.com/index.php/ProductsController');
+                    }
             }
     }
 
@@ -121,20 +115,25 @@ class ProductsController extends CI_Controller{
                   // Muevo la imagen desde el directorio temporal a nuestra ruta indicada anteriormente
                   move_uploaded_file($_FILES['image_file']['tmp_name'],$directorio.$nombre_img);
                   $this->image = $nombre_img;
+                  return true;
                 } 
                 else 
                 {
                    //si no cumple con el formato
-                   echo "No se puede subir una imagen con ese formato ";
+                   echo '<script>alert("No se puede subir una imagen con ese formato")</script> ';
+                   return false;
                 }
                 } 
                 else 
                 {
                    //si existe la variable pero se pasa del tamaño permitido
-                   if($nombre_img == !NULL) echo "La imagen es demasiado grande "; 
+                   if($nombre_img == !NULL) {
+                       echo '<script>alert("La imagen es demasiado grande")</script> '; 
+                       return false;
                 }
             }
         }
+    }    
      
     //Controlador para eliminar
     public function eliminar($id){

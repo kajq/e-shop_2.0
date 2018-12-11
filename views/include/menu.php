@@ -35,11 +35,11 @@ class menu
 					</ul>
 				  </div>";
 			if ($this->rol == '1' || $this->rol == '0') {
-			echo "<div class='navbar'>
+			/*echo "<div class='navbar'>
 					<ul class='nav pull-right'>
 						<li><a href='register.php?action=Edit'>Perfil Usuario</a></li>		 
 					</ul>
-				  </div>";
+				  </div>";*/
 			echo "<div class='navbar'>
 					<ul class='nav pull-right'>
 					 	<li><a href='". site_url('../SalesController') ."'>Lista de deseos</a></li>		 
@@ -47,11 +47,11 @@ class menu
 				  </div>";	  	    	
 			}	  
 			if ($this->rol == '1' || $this->rol == 2) {
-				echo "<div class='navbar'>
+				/*echo "<div class='navbar'>
 						<ul class='nav pull-right'>
 							<li><a href='admin_persons.php'>Administradores</a></li>		 
 						</ul>
-					  </div>";
+					  </div>";*/
 				echo "<div class='navbar'>
 						<ul class='nav pull-right'>
 							<li><a href='" . site_url('../ProductsController'). "'>Productos</a></li>		 

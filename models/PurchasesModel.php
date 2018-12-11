@@ -15,7 +15,7 @@ class PurchasesModel extends CI_Model{
 			$where = $where . "and s.user = '$user'";
 		}
         //Hacemos una consulta
-        $consulta=$this->db->query("SELECT s.id_sale, s.sale_date, p.name, p.last_name, 
+        $consulta=$this->db->query("SELECT s.id_sale, s.sale_date, p.name, p.last_name, p.user,
         (SELECT SUM(sum) total FROM sold_products 
         WHERE id_sale = s.id_sale GROUP by id_sale) sum, 
         (SELECT SUM(price * sum) total FROM sold_products 

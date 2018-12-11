@@ -32,7 +32,7 @@
 								Reimpresión de Factura
 							</h4>
 						</td>
-						<td colspan="4"><h4> www.e-shop.cpm</h4></td>
+						<td colspan="4"><h4> www.e-shop.com</h4></td>
 					</tr>
 					<tr>
 						<form action="" method="post">

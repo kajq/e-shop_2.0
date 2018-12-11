@@ -24,19 +24,19 @@ class PurchasesController extends CI_Controller{
             echo '<script>alert("Usuario no autorizado!!")</script> ';
             redirect('http://www.e-shop_2.0.com/index.php');	
         }
-        $purchases["ver"]=$this->PurchasesModel->ver($_SESSION['user']);    
-        $purchases["all_users"]=$this->PurchasesModel->total_users();  
-        $purchases["all_products"]=$this->PurchasesModel->total_products('admin');  
-        $purchases["all_sales"]=$this->PurchasesModel->total_sales('admin');  
+        $purchases["ver"]=          $this->PurchasesModel->ver($_SESSION['user']);    
+        $purchases["all_users"]=    $this->PurchasesModel->total_users();  
+        $purchases["all_products"]= $this->PurchasesModel->total_products('admin');  
+        $purchases["all_sales"]=    $this->PurchasesModel->total_sales('admin');  
         $purchases["total_products"]=$this->PurchasesModel->total_products($_SESSION['user']);  
-        $purchases["total_sales"]=$this->PurchasesModel->total_sales($_SESSION['user']);
+        $purchases["total_sales"]=  $this->PurchasesModel->total_sales($_SESSION['user']);
         //cargo la vista y le paso los datos 
         $this->load->view("purchases_view",$purchases);          
     }
 
-    public function details($id_sale){
-        $datos["cart"]    = $this->SalesModel->cart($id_sale,$_SESSION['user']);
-        $datos["person"]  = $this->SalesModel->Customer($_SESSION['user']);    
+    public function details($id_sale, $user){ 
+        $datos["cart"]    = $this->SalesModel->cart($id_sale,$user);
+        $datos["person"]  = $this->SalesModel->Customer($user);    
         $datos["products"]=$this->SalesModel->ProductsCart($id_sale);    
         //cargo la vista y le paso los datos
         $this->load->view("purchases_details_view",$datos); 

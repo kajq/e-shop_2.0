@@ -93,35 +93,9 @@
           </td>
         </tr>
         <tr>  
-        <td><input type='submit' name='submit' class='btn btn-danger' value='Guardar'></td>
-        <td><input class='btn btn-danger' type='boton'   value='Cancelar'  onclick="window.location.href='/index.php'"> </form>
-        <?php
-          if(isset($_POST['new'])){
-            if ($user->check_pass() == true) {
-                $user->check_mail();
-                if ($user->email_exist == false) {
-                  $user->insert_user();
-                  $user->sendemail(); 
-                  echo "<script>location.href='index.php'</script>";
-                }
-              } 
-          }
-          if(isset($_POST['update'])){
-              if ($user->check_pass() == true) {
-                $user->update_user();
-                $user->sendemail(); 
-                require("class/check_user.php");
-                $init = new check_user();
-                $init->check_userdb();
-                //echo "<script>location.href='index.php'</script>";
-              }
-              
-          }
-          if (isset($_POST['cancel'])) {
-            echo "<script>location.href='index.php'</script>";
-          }
-        	?>
-          </td>
+          <td><input type='submit' name='submit' class='btn btn-danger' value='Guardar'></td>
+          <td><input class='btn btn-danger' type='boton'   value='Cancelar'  onclick="window.location.href='/index.php'"> </form>
+        </td>
         </tr>
     	</table>
     	</div>

@@ -45,7 +45,7 @@
 			</td>
 			<td>
 				<input type='submit' name='submit' class='btn btn-danger' value='Guardar'>
-				<input type="submit" class="btn btn-danger" value="Cancelar" onclick = "window.location.href='../admin_products.php'">	
+				<input type="boton" class="btn btn-danger" value="Cancelar" onclick = "window.location.href='/index.php/ProductsController'">	
 			</td>
 		</tr>
 		<tr>
@@ -53,7 +53,7 @@
 				<b>Imagen</b>
 			</td>
 			<td colspan="6">
-				<input id="image_file" name="image_file" size="30" type="file">	
+				<input id="image_file" name="image_file" size="30" type="file" required ><?php //echo isset($mod[0]->image_file) ? $mod[0]->image_file : ""; ?>	
 			</td>
 		</tr>
 	</table>
