@@ -48,26 +48,25 @@ class ProductsController extends CI_Controller{
             $this->input->post("description"),
             $this->input->post("price"),
             $this->input->post("in_stock"),
-            $this->input->post("image_file"),
+            $this->image,
             $this->input->post("id_category")
             );
             if($model_add==true){
                 //Sesion de una sola ejecución
                 echo '<script>alert("Producto agregada correctamente")</script> ';
                 //redirecciono la pagina a la url por defecto
+                redirect('http://www.e-shop_2.0.com/index.php/ProductsController');
                 
             }else{
                 echo '<script>alert("No se pudo agregar el producto")</script> ';
             }
-            redirect('http://www.e-shop_2.0.com/index.php/ProductsController');
         }
     }
 
     //controlador para modificar al que
     //le paso por la url un parametro
-    public function mod($id){
-        if($id <> null){
-          $datos["mod"]=$this->ProductsModel->mod($id);
+    public function mod($sku){
+          $datos["mod"]=$this->ProductsModel->mod($sku);
           $datos["ver"]=$this->ProductsModel->ver();
           $datos["verCat"]=$this->CategoriesModel->ver();
           $this->load->view("products_view",$datos);
@@ -78,7 +77,7 @@ class ProductsController extends CI_Controller{
                 
                 //llamo a funcion del modelo para modificar
                 $mod=$this->ProductsModel->mod(
-                        $id,
+                        $sku,
                         $this->input->post("submit"),
                         $this->input->post("sku"),
                         $this->input->post("description"),
@@ -95,9 +94,6 @@ class ProductsController extends CI_Controller{
                 }
                 redirect('http://www.e-shop_2.0.com/index.php/ProductsController');
             }
-        }else{
-            redirect('http://www.e-shop_2.0.com/index.php/ProductsController');
-        }
     }
 
     //Función para el input de imagen para producto

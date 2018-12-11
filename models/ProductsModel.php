@@ -42,7 +42,7 @@ class ProductsModel extends CI_Model{
         }else{
           $consulta=$this->db->query("
               UPDATE products SET sku='$sku', description='$description', price='$price', in_stock='$in_stock', image_file='$image_file', 
-              id_category='$id_category' WHERE id=$id;");
+              id_category='$id_category' WHERE sku='$id';");
           if($consulta==true){
               return true;
           }else{
