@@ -20,11 +20,9 @@ foreach($categories as $category){ ?>
 						 </div>
 				</div>
 			</div>
-	
-	<hr class='soften'/>
  <?php	}  
 	}
-	echo "</div> <br>";
-} ?>
+	echo "<hr class='soften'/> </div> ";
+}  echo "<br> </div>";?>
 
  
